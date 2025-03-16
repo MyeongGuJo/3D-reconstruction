@@ -3,3 +3,4 @@ images/
 output/
 *.mp4
 *.db*
+*.npz

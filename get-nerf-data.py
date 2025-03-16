@@ -5,6 +5,7 @@ from pathlib import Path
 import utils.nerf_data_format
 
 reconstruction_path = Path("output/0")
+output_path = 'coffee_data.npz'
 
 if __name__=="__main__":
     print("Get poses...")
@@ -17,5 +18,8 @@ if __name__=="__main__":
     
     H = images.shape[1]
     W = images.shape[2]
-    focal = 1.2 * H * W
+    focal = 1.2 * max(H, W)
     print(f"focal length: {focal}")
+
+    np.savez(output_path, images=images, poses=poses, focal=focal)
+    print(f"Data saved to {output_path}")
