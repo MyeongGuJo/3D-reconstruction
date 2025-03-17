@@ -13,7 +13,7 @@ def qvec2rotmat(q):
         [1 - 2*(y**2 + z**2),     2*(x*y - z*w),         2*(x*z + y*w)],
         [2*(x*y + z*w),           1 - 2*(x**2 + z**2),     2*(y*z - x*w)],
         [2*(x*z - y*w),           2*(y*z + x*w),         1 - 2*(x**2 + y**2)]
-    ], dtype=np.double)
+    ],)
     return R
 
 def get_poses(path):
@@ -26,20 +26,20 @@ def get_poses(path):
     for _, image in reconstruction.images.items():
         rigid = image.cam_from_world
         q = rigid.rotation.quat
-        t = np.array(rigid.translation, dtype=np.double)
+        t = np.array(rigid.translation,)
         
         # 쿼터니언을 회전 행렬로 변환
         R = qvec2rotmat(q)
 
         # 4x4 동차 변환 행렬 구성 (상단 좌측 3x3: 회전, 상단 우측: translation)
-        T = np.eye(4, dtype=np.double)
+        T = np.eye(4,)
         T[:3, :3] = R
         T[:3, 3] = t
 
         image_files.append(image.name)
         transformations.append(T)
     
-    return image_files, np.array(transformations, dtype=np.double)
+    return image_files, np.array(transformations,)
 
 def get_images(image_files):
     dir = "images/"
@@ -50,6 +50,6 @@ def get_images(image_files):
         if image is None:
             print(f"fail to load: {image_file}")
             continue
-        images.append(np.array(image, dtype=np.double))
+        images.append(np.array(image))
     
     return np.array(images)

@@ -23,9 +23,9 @@ if __name__=="__main__":
         shutil.rmtree(image_dir)
         print(f"{image_dir} is removed.")
         
-        os.mkdir(image_dir)
-        print(f"{image_dir} is created.")
-        utils.video.save_video2images(video_path)
+    os.mkdir(image_dir)
+    print(f"{image_dir} is created.")
+    utils.video.save_video2images(video_path, is_skip=True)
 
     # 출력 폴더 생성
     output_path.mkdir(exist_ok=True)
