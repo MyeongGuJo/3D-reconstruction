@@ -1,6 +1,8 @@
 __pycache__/
 images/
 output/
+sparse/
 *.mp4
 *.db*
 *.npz
+*.txt

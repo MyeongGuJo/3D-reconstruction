@@ -27,18 +27,18 @@ if __name__=="__main__":
     print(f"{image_dir} is created.")
     utils.video.save_video2images(video_path, is_skip=True)
 
-    # 출력 폴더 생성
-    output_path.mkdir(exist_ok=True)
-    mvs_path = output_path / "mvs"
-    database_path = output_path / "database.db"
+    # # 출력 폴더 생성
+    # output_path.mkdir(exist_ok=True)
+    # mvs_path = output_path / "mvs"
+    # database_path = output_path / "database.db"
 
-    # Sparse reconstruction
-    print("Extracting features...")
-    pycolmap.extract_features(database_path, image_dir)
-    print("Matching features...")
-    pycolmap.match_exhaustive(database_path)
-    print("Running incremental mapping...")
-    # incremental_mapping은 sparse reconstruction을 수행하며, 여러 맵(reconstructions)을 반환합니다.
-    maps = pycolmap.incremental_mapping(database_path, image_dir, output_path)
-    # 첫 번째 reconstruction 결과를 저장합니다.
-    maps[0].write(output_path)
+    # # Sparse reconstruction
+    # print("Extracting features...")
+    # pycolmap.extract_features(database_path, image_dir)
+    # print("Matching features...")
+    # pycolmap.match_exhaustive(database_path)
+    # print("Running incremental mapping...")
+    # # incremental_mapping은 sparse reconstruction을 수행하며, 여러 맵(reconstructions)을 반환합니다.
+    # maps = pycolmap.incremental_mapping(database_path, image_dir, output_path)
+    # # 첫 번째 reconstruction 결과를 저장합니다.
+    # maps[0].write(output_path)
