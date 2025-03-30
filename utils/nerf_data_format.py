@@ -22,6 +22,7 @@ def get_poses(path):
     
     image_files = []
     transformations = []
+    T_flip = np.diag([1, 1, -1, 1])
     
     for _, image in reconstruction.images.items():
         rigid = image.cam_from_world
@@ -36,8 +37,12 @@ def get_poses(path):
         T[:3, :3] = R
         T[:3, 3] = t
 
+        # 여기서 구한 T는 +z 방향 camera pose
+        # nerf에서는 -z방향이므로 flip 필요
+        new_T = T @ T_flip
+
         image_files.append(image.name)
-        transformations.append(T)
+        transformations.append(new_T)
     
     return image_files, np.array(transformations,)
 

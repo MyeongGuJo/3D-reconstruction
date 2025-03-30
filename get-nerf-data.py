@@ -14,7 +14,8 @@ if __name__=="__main__":
     print("Get images...")
     images = utils.nerf_data_format.get_images(image_files)
     print(images.shape, type(images))
-    
+
+    N = images.shape[0]
     H = images.shape[1]
     W = images.shape[2]
     focal = 1.2 * max(H, W)
