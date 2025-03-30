@@ -4,7 +4,7 @@ from pathlib import Path
 import utils.nerf_data_format
 
 reconstruction_path = Path("output/0")
-output_path = 'coffee_data_resized.npz'
+output_path = 'megumin_data_resized.npz'
 
 if __name__=="__main__":
     print("Get poses...")

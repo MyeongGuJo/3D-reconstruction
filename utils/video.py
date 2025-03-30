@@ -25,9 +25,15 @@ def save_video2images(video_path, is_skip=False):
                 frame = cv2.resize(frame, size)
 
             # save
-            print(f"subtract bg in image{i}.png...")
-            frame = remove_background(frame)
-            cv2.imwrite(f"images/image{i}.png", frame)
+            if i < 10:
+                filename = f"image00{i}.png"
+            elif i < 100:
+                filename = f"image0{i}.png"
+            else:
+                filename = f"image{i}.png"
+            # print(f"subtract bg in image{i}.png...")
+            # frame = remove_background(frame)
+            cv2.imwrite(f"images/{filename}", frame)
 
     cap.release()
 
