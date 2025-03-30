@@ -1,10 +1,30 @@
+import os
+import random
 import cv2
 import numpy as np
 import rembg
 
+def shuffle_frames(frames):
+    """
+    프레임 리스트를 섞어(shuffle) 반환합니다.
+    """
+    shuffled = frames[:]  # 원본 리스트를 복사
+    random.shuffle(shuffled)
+    return shuffled
+
+def save_frames(frames, output_folder):
+    """
+    프레임 리스트의 각 프레임을 개별 이미지 파일로 저장합니다.
+    """
+    os.makedirs(output_folder, exist_ok=True)
+    for i, frame in enumerate(frames):
+        filename = os.path.join(output_folder, f"frame_{i:04d}.png")
+        cv2.imwrite(filename, frame)
+
 def save_video2images(video_path, is_skip=False):
     i = 0
     cap = cv2.VideoCapture(video_path)
+    frames = []
 
     if not cap.isOpened():
         print("Error: Cannot open video file.")
@@ -19,24 +39,16 @@ def save_video2images(video_path, is_skip=False):
             
             if is_skip and i%3 != 0:
                 continue
-            elif is_skip:
-                H, W = frame.shape[:2]
-                size = (W // 4, H // 4)
-                frame = cv2.resize(frame, size)
+            H, W = frame.shape[:2]
+            size = (W // 4, H // 4)
+            frame = cv2.resize(frame, size)
 
-            # save
-            if i < 10:
-                filename = f"image00{i}.png"
-            elif i < 100:
-                filename = f"image0{i}.png"
-            else:
-                filename = f"image{i}.png"
-            # print(f"subtract bg in image{i}.png...")
-            # frame = remove_background(frame)
-            cv2.imwrite(f"images/{filename}", frame)
+            frames.append(frame)
 
     cap.release()
 
+    shuffled = shuffle_frames(frames)
+    save_frames(shuffled, "images")
     print("images ready")
 
 def remove_background(img):
