@@ -2,6 +2,7 @@ __pycache__/
 images/
 output/
 sparse/
+colmap_output/
 *.mp4
 *.db*
 *.npz
