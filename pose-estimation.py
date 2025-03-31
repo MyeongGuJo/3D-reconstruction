@@ -10,7 +10,7 @@ TODO 1. find default focal length of pyclomap
 TODO 2. change focal length option to my camera's
 """
 
-video_path = "megumin.mp4"  
+video_path = "plankHyundong.mp4"  
 output_path = pathlib.Path("output")
 image_dir = pathlib.Path("images")# 재구성 결과 폴더
 

@@ -37,7 +37,7 @@ def save_video2images(video_path, is_skip=False):
             if not ret:
                 break  # 영상 끝에 도달하면 종료
             
-            if is_skip and i%3 != 0:
+            if is_skip and i%15 != 0:
                 continue
             H, W = frame.shape[:2]
             size = (W // 4, H // 4)
