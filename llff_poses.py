@@ -128,6 +128,8 @@ def main():
     print("LLFF poses shape:", llff_poses.shape)  # (M, 17)
 
     # 결과 저장
+    np.save("poses.npy", poses)
+    print("Saved poses.npy in 4x4 format.")
     np.save("poses_bounds.npy", llff_poses)
     print("Saved poses_bounds.npy in LLFF format.")
 

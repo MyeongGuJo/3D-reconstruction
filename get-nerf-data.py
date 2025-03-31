@@ -65,7 +65,7 @@ def create_llff_data(image_folder, poses_bounds_path, output_npz="data.npz"):
 if __name__ == "__main__":
     # 사용자에 맞게 경로 수정
     image_folder = "images"             # 이미지가 들어있는 폴더
-    poses_bounds_path = "poses_bounds.npy"  # LLFF 형식의 포즈 파일
+    poses_bounds_path = "poses.npy"  # LLFF 형식의 포즈 파일
     output_npz = "nerf_data.npz"
     
     create_llff_data(image_folder, poses_bounds_path, output_npz)
